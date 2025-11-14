@@ -1,0 +1,93 @@
+{
+	"name": "linkup-ai-sdk",
+	"author": "Linkup",
+	"version": "1.0.0",
+	"description": "Linkup web search tool for Vercel AI SDK",
+	"module": "./dist/index.js",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"import": "./dist/index.js",
+			"require": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		}
+	},
+	"type": "module",
+	"scripts": {
+		"example": "tsx examples/index.ts",
+		"build": "tsc",
+		"lint": "biome check",
+		"lint:fix": "biome check --write --unsafe",
+		"prepare": "husky",
+		"prune": "knip",
+		"commitlint": "commitlint --edit",
+		"semantic-release": "semantic-release"
+	},
+	"keywords": [
+		"linkup",
+		"search",
+		"web-search",
+		"ai",
+		"sdk",
+		"vercel",
+		"ai-sdk",
+		"tools"
+	],
+	"files": [
+		"dist",
+		"README.md"
+	],
+	"homepage": "https://github.com/LinkupPlatform/linkup-ai-sdk#readme",
+	"license": "MIT",
+	"dependencies": {
+		"linkup-sdk": "^2.4.1"
+	},
+	"devDependencies": {
+		"@ai-sdk/openai": "^2.0.65",
+		"@biomejs/biome": "2.3.5",
+		"@commitlint/cli": "^20.1.0",
+		"@commitlint/config-conventional": "^20.0.0",
+		"@types/node": "^24.8.0",
+		"husky": "^9.1.7",
+		"knip": "^5.65.0",
+		"semantic-release": "^25.0.1",
+		"tsx": "^4.20.6",
+		"typescript": "^5.9.3"
+	},
+	"peerDependencies": {
+		"ai": "^5.0.93",
+		"zod": "^3.0.0"
+	},
+	"engines": {
+		"node": ">=18.0.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/LinkupPlatform/linkup-ai-sdk.git"
+	},
+	"release": {
+		"branches": [
+			"main"
+		],
+		"plugins": [
+			"@semantic-release/commit-analyzer",
+			"@semantic-release/release-notes-generator",
+			"@semantic-release/npm",
+			[
+				"@semantic-release/github",
+				{
+					"failTitle": "The automated release is failing 🚨",
+					"failComment": false,
+					"labels": false,
+					"releasedLabels": false
+				}
+			]
+		]
+	},
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-conventional"
+		]
+	}
+}
