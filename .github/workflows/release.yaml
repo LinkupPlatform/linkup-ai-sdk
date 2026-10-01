@@ -4,10 +4,6 @@ on:
   push:
     branches: [main]
 
-env:
-  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-  GH_TOKEN: ${{ secrets.GH_TOKEN }}
-
 jobs:
   run-tests:
     uses: ./.github/workflows/_run-tests.yaml
@@ -26,3 +22,6 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm run semantic-release
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
